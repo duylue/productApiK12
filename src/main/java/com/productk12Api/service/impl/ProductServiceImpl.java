@@ -2,6 +2,7 @@ package com.productk12Api.service.impl;
 
 import com.productk12Api.base.BaseResponse;
 import com.productk12Api.model.Product;
+import com.productk12Api.repository.CategoryRepo;
 import com.productk12Api.repository.ProductRepo;
 import com.productk12Api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,13 @@ public class ProductServiceImpl extends BaseResponse implements ProductService {
     public ResponseEntity<?> findById(int id) {
         Product product = productRepo.findById(id).get();
         return getResponseEntity(product);
+    }
+
+    @Autowired
+    private CategoryRepo categoryRepo;
+
+    @Override
+    public ResponseEntity<?> findCtById(int id) {
+        return getResponseEntity(categoryRepo.findById(id).get());
     }
 }

@@ -2,6 +2,7 @@ package com.productk12Api.model;
 
 import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -17,8 +18,8 @@ public class Category {
     @Id
     private int cid;
     private String cname;
-    @OneToMany(mappedBy = "category")
-    private List<Product> list;
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    private List<Product> products;
 
 
 }
