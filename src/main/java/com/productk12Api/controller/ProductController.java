@@ -28,5 +28,9 @@ public class ProductController {
     }
 
 
+    @GetMapping("/getListQtyPurchased")
+    public ResponseEntity<?> getListQtyPurchased() {
+        return productService.getListQtyPurchased();
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.productk12Api.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.productk12Api.base.BaseResponse;
 import com.productk12Api.model.Product;
 import com.productk12Api.repository.ProductRepo;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductServiceImpl extends BaseResponse implements ProductService {
@@ -37,5 +39,11 @@ public class ProductServiceImpl extends BaseResponse implements ProductService {
     public ResponseEntity<?> findById(int id) {
         Product product = productRepo.findById(id).get();
         return getResponseEntity(product);
+    }
+
+    @Override
+    public ResponseEntity<?> getListQtyPurchased() {
+        List<Map<String,Object>> maps = productRepo.getListQtyPurchasedMap();
+        return getResponseEntity(maps);
     }
 }
