@@ -9,4 +9,6 @@ public interface ProductService {
     ResponseEntity<?> delete(int id);
     ResponseEntity<?> findById(int id);
     ResponseEntity<?> getListQtyPurchased();
+
+    ResponseEntity<?>  getAvgPrice(int id);
 }

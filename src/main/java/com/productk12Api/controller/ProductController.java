@@ -27,6 +27,11 @@ public class ProductController {
        return productService.getListProduct();
     }
 
+    @GetMapping("/getAvgPrice")
+    public ResponseEntity<?> getAvgPrice() {
+        return productService.getAvgPrice(1);
+    }
+
 
     @GetMapping("/getListQtyPurchased")
     public ResponseEntity<?> getListQtyPurchased() {

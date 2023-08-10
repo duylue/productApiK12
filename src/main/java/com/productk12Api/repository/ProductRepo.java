@@ -27,5 +27,5 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
             "       cid from product group by cid)\n" +
             "select a.*, b.cname from a, category b\n" +
             "where a.cid = b.cid and b.cid =:cid", nativeQuery = true)
-    List<Map<String, Object>> getAvgPrice(@Param("cid") int cid);
+Map<String, Object> getAvgPrice(@Param("cid") int cid);
 }

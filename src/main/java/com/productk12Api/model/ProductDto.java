@@ -14,4 +14,7 @@ public class ProductDto {
     private int pid;
     private int qty;
     private String pname;
+    private float avg;
+    private int cid;
+    private String cname;
 }

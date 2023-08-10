@@ -3,6 +3,7 @@ package com.productk12Api.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.productk12Api.base.BaseResponse;
 import com.productk12Api.model.Product;
+import com.productk12Api.model.ProductDto;
 import com.productk12Api.repository.ProductRepo;
 import com.productk12Api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,16 @@ public class ProductServiceImpl extends BaseResponse implements ProductService {
     }
 
     @Override
+    public ResponseEntity<?> getAvgPrice(int id) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ProductDto productDto = objectMapper.convertValue(productRepo.getAvgPrice(id), ProductDto.class);
+        return getResponseEntity(productDto);
+    }
+
+    @Override
     public ResponseEntity<?> findById(int id) {
         Product product = productRepo.findById(id).get();
+
         return getResponseEntity(product);
     }
 
