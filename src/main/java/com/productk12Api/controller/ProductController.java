@@ -26,12 +26,13 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<?> getAll() {
-       return service.get();
+       return service.po();
     }
     @GetMapping("/ct")
     public ResponseEntity<?> getAllCt() {
         return productService.findCtById(1);
     }
+
 
 
 
