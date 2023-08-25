@@ -26,7 +26,11 @@ public class ProductController {
     public ResponseEntity<?> getAll() {
        return productService.getListProduct();
     }
-
+    @GetMapping("/getOne")
+    public ResponseEntity<?> getOne() {
+        Product product = new Product(1,"ada",1,1,100);
+        return ResponseEntity.ok(product);
+    }
     @GetMapping("/getAvgPrice")
     public ResponseEntity<?> getAvgPrice() {
         return productService.getAvgPrice(1);
