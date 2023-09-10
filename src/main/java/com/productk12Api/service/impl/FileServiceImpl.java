@@ -21,7 +21,26 @@ public class FileServiceImpl extends BaseResponse implements FileService {
 
     @Override
     public ResponseEntity<?> save(MultipartFile file, int id) {
-        fileRepo.save(convertMyFile(file,id));
+        Optional<MyFile> optionalMyFile = fileRepo.findById(id);
+        MyFile myFile = new MyFile();
+
+        try {
+            if (optionalMyFile.isEmpty()) {
+                myFile.setId(id);
+                myFile.setCtype(file.getContentType());
+                myFile.setContent(file.getBytes());
+                myFile.setFname(file.getOriginalFilename());
+                fileRepo.save(myFile);
+            } else {
+                optionalMyFile.get().setId(id);
+                optionalMyFile.get().setCtype(file.getContentType());
+                optionalMyFile.get().setContent(file.getBytes());
+                optionalMyFile.get().setFname(file.getOriginalFilename());
+                fileRepo.save(optionalMyFile.get());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         return getResponseEntity("success");
     }
@@ -43,8 +62,8 @@ public class FileServiceImpl extends BaseResponse implements FileService {
     @Override
     public ResponseEntity<?> findByID(int id) {
         Optional<MyFile> file = fileRepo.findById(id);
-        if (file.isEmpty()){
-            throw new RuntimeException("file invalid");
+        if (file.isEmpty()) {
+            file = fileRepo.findById(2);
         }
         return ResponseEntity.status(200).
                 contentType(MediaType.parseMediaType(file.get().getCtype()))
