@@ -4,6 +4,7 @@ import com.productk12Api.base.BaseResponse;
 import com.productk12Api.model.MyFile;
 import com.productk12Api.repository.FileRepo;
 import com.productk12Api.service.FileService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,6 +46,8 @@ public class FileServiceImpl extends BaseResponse implements FileService {
         if (file.isEmpty()){
             throw new RuntimeException("file invalid");
         }
-        return getResponseEntity(file.get());
+        return ResponseEntity.status(200).
+                contentType(MediaType.parseMediaType(file.get().getCtype()))
+                .body(file.get().getContent());
     }
 }
