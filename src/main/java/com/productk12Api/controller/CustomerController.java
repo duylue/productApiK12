@@ -36,10 +36,14 @@ public class CustomerController {
     public ResponseEntity<?> save(@RequestBody Customer customer) {
         return customerService.save(customer);
     }
-
     @GetMapping("/getListPurchased")
     public ResponseEntity<?> getListPurchased() {
         return customerService.getListPurchased();
+    }
+
+    @GetMapping("/findCusById")
+    public ResponseEntity<?> findCusById(@RequestParam int id) {
+        return customerService.findCusById(id);
     }
 
 }

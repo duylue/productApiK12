@@ -48,6 +48,11 @@ public class CustomerServiceImpl extends BaseResponse implements CustomerService
     }
 
     @Override
+    public ResponseEntity<?> findCusById(int id) {
+        return getResponseEntity(customerRepository.findCusById(id));
+    }
+
+    @Override
     public ResponseEntity<?> findById(int id) {
         return getResponseEntity(customerRepository.findById(id));
     }

@@ -15,6 +15,7 @@ public class CustomerDTO {
     private int cusid;
     private String cusname;
     private String phone;
+    private String address;
     private int aid;
     private int oid;
     private Date odate;
