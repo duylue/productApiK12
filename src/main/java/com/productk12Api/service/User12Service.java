@@ -8,5 +8,6 @@ public interface User12Service {
     ResponseEntity<?> save(User user, int[] rid);
 
     ResponseEntity<?> findByUsername(String username);
+    User findByUsername12(String username);
 
 }
