@@ -8,5 +8,5 @@ public interface User12Service {
     ResponseEntity<?> save(User user, int[] rid);
 
     ResponseEntity<?> findByUsername(String username);
-
+    User getByUsername(String username);
 }

@@ -8,6 +8,7 @@ import com.productk12Api.repository.UserRepository;
 import com.productk12Api.service.User12Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,19 +21,27 @@ public class UserServiceImpl extends BaseResponse implements User12Service {
     private UserRepository repository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder encoder;
 
     @Override
     public ResponseEntity<?> save(User user, int[] rid) {
         List<Role> roles = new ArrayList<>();
-        for ( int id: rid) {
+        for (int id : rid) {
             Optional<Role> optionalRole = roleRepository.findById(id);
-            if (optionalRole.isEmpty()){
-                throw new  RuntimeException("rid invalid");
+            if (optionalRole.isEmpty()) {
+                throw new RuntimeException("rid invalid");
             }
             roles.add(optionalRole.get());
         }
+        user.setPassword(encoder.encode(user.getPassword()));
         user.setRoles(roles);
         return getResponseEntity(repository.save(user));
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        return repository.findByUsername(username);
     }
 
     @Override
