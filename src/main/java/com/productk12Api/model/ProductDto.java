@@ -13,8 +13,10 @@ import javax.persistence.Id;
 public class ProductDto {
     private int pid;
     private int qty;
+    private int qty2;
     private String pname;
     private float avg;
     private int cid;
     private String cname;
+    private int qty23;
 }
