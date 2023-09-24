@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-
+@CrossOrigin("*")
 public class UserController {
     @Autowired
     private User12Service user12Service;
