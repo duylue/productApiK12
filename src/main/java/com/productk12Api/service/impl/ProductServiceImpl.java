@@ -47,4 +47,9 @@ public class ProductServiceImpl extends BaseResponse implements ProductService {
     public ResponseEntity<?> findCtById(int id) {
         return getResponseEntity(categoryRepo.findById(id).get());
     }
+
+    @Override
+    public int test(int x, int y) {
+        return x+y;
+    }
 }

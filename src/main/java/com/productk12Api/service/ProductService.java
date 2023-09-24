@@ -9,4 +9,5 @@ public interface ProductService {
     ResponseEntity<?> delete(int id);
     ResponseEntity<?> findById(int id);
     ResponseEntity<?> findCtById(int id);
+   int test(int x, int y);
 }

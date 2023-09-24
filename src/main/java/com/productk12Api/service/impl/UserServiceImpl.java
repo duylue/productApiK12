@@ -29,7 +29,7 @@ public class UserServiceImpl extends BaseResponse {
         WebClient client = WebClient.create("http://localhost:8080");
       Customer customer = client.post().uri("/api/user").
                 accept(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML)
-                .bodyValue(new User(1, "duy", "duy", "duy", new ArrayList<>()))
+                .bodyValue(new User())
                 .retrieve()
                 .bodyToMono(Customer.class).block();
 
