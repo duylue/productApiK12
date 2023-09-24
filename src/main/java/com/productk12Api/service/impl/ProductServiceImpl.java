@@ -55,4 +55,9 @@ public class ProductServiceImpl extends BaseResponse implements ProductService {
         List<Map<String,Object>> maps = productRepo.getListQtyPurchasedMap();
         return getResponseEntity(maps);
     }
+
+    public int cul(int x, int y){
+        return x *y;
+    }
+
 }
