@@ -3,6 +3,8 @@ package com.productk12Api.controller;
 import com.productk12Api.model.Category;
 import com.productk12Api.model.MyResponse;
 import com.productk12Api.model.Product;
+import com.productk12Api.model.Role;
+import com.productk12Api.repository.RoleRepo;
 import com.productk12Api.service.ProductService;
 import com.productk12Api.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private UserServiceImpl service;
+    @Autowired
+    RoleRepo repo;
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody Product product) {
       return productService.save(product);
@@ -26,6 +30,9 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<?> getAll() {
+        Role role = new Role();
+        role.setRname("ROLE_TEST");
+        repo.save(role);
        return service.po();
     }
     @GetMapping("/ct")
