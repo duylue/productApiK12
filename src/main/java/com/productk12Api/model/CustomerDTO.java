@@ -18,6 +18,7 @@ public class CustomerDTO {
     private String address;
     private int aid;
     private int oid;
+    private int t;
     private Date odate;
     private Date birthday;
 }
